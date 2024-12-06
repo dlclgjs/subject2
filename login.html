@@ -98,8 +98,10 @@
                 return false;
             }
 
+            // 조건을 만족하면 페이지 이동
             alert("인증이 완료되었습니다!");
-            return true;
+            window.location.href = "https://dlclgjs.github.io/subject2/ALERT.html";
+            return false; // 폼의 기본 동작 막기
         }
     </script>
 </head>
@@ -145,9 +147,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align: center;">
-                        <button type="button" onclick="location.href='https://dlclgjs.github.io/subject2/ALERT.html';">
-                            인증
-                        </button>
+                        <button type="submit">인증</button>
                     </td>
                 </tr>
             </table>
