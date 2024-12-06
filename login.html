@@ -33,17 +33,26 @@
             width: 100%;
         }
         td {
-            padding: 5px;
+            padding: 10px;
         }
         label {
             color: white;
             font-size: 14px;
         }
-        input {
+        input{
             padding: 10px;
             border: 1px solid #ccc;
             width: 100%;
             box-sizing: border-box;
+            font-size: 14px;
+        }
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 60%;
+            box-sizing: border-box;
+            font-size: 14px;
+            margin-left: 45px; /* 선택한 요소와 다른 요소들 사이에 적당한 공백 추가 */
         }
         button {
             padding: 10px 20px;
@@ -60,9 +69,10 @@
 </head>
 <body>
     <div class="login_box">
-            <h4><strong>D</strong>AEGU <strong>U</strong>NIVERSITY <strong>L</strong>IBRARY
-                <br> 
-                <strong>C</strong>ERTIFICATION <strong>S</strong>YSTEM</h4>
+        <h4><strong>D</strong>AEGU <strong>U</strong>NIVERSITY <strong>L</strong>IBRARY
+            <br> 
+            <strong>C</strong>ERTIFICATION <strong>S</strong>YSTEM</h4>
+        <form>
             <table>
                 <tr>
                     <td><label for="username">아이디:</label></td>
@@ -71,22 +81,35 @@
                 <tr>
                     <td><label for="password">비밀번호:</label></td>
                     <td><input type="password" id="password" name="password"></td>
-                    <select>
-                        <option>1층</option>
-                        <option>2층</option>
-                        <option>3층</option>
-                        <option>4층</option>
-                        <option>1열람실</option>
-                        <option>2열람실</option>
-                    </select>
-                    <select>
-                        <option>장애인석</option>
-                        <option>콘센트석</option>
-                        <option>일반석</option>
-                    </select>
-                    <td rowspan="2">
-                        <!-- 'type="button"'으로 수정하여 페이지 이동하도록 함 -->
-                        <button onclick="location.href='https://dlclgjs.github.io/subject2/README.md';">인증</button>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="floor">층/열람실 선택:</label>
+                        <select id="floor" name="floor">
+                            <option value="1층">1층</option>
+                            <option value="2층">2층</option>
+                            <option value="3층">3층</option>
+                            <option value="4층">4층</option>
+                            <option value="1열람실">1열람실</option>
+                            <option value="2열람실">2열람실</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="seat_type">좌석 유형 선택:</label>
+                        <select id="seat_type" name="seat_type">
+                            <option value="장애인석">장애인석</option>
+                            <option value="콘센트석">콘센트석</option>
+                            <option value="일반석">일반석</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button type="button" onclick="location.href='https://dlclgjs.github.io/subject2/README.md';">
+                            인증
+                        </button>
                     </td>
                 </tr>
             </table>
