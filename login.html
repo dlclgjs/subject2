@@ -45,14 +45,14 @@
             width: 100%;
             box-sizing: border-box;
             font-size: 14px;
-        }
+        } 
         select {
             padding: 10px;
             border: 1px solid #ccc;
-            width: 60%;
+            width: 70%;
             box-sizing: border-box;
             font-size: 14px;
-            margin-left: 45px;
+            margin-left: 60;
         }
         button {
             padding: 10px 20px;
@@ -67,6 +67,32 @@
         }
     </style>
     <script>
+        function authenticate() {
+            const floor = document.getElementById("floor").value;
+            const seatType = document.getElementById("seatType").value;
+
+            if (!floor || !seatType) {
+                alert("층과 좌석 유형을 선택하세요.");
+                return;
+            }
+
+            const seatData = JSON.parse(localStorage.getItem("seatData"));
+            const seatMap = {
+                "장애인석": "disabled",
+                "콘센트석": "plug",
+                "일반석": "regular"
+            };
+
+            if (seatData[floor] && seatMap[seatType]) {
+                seatData[floor][seatMap[seatType]].current++;
+                seatData[floor][seatMap[seatType]].timestamp = new Date().getTime(); // timestamp 추가
+                localStorage.setItem("seatData", JSON.stringify(seatData));
+                alert(`${floor} ${seatType}에 인증되었습니다.`);
+            } else {
+                alert("올바르지 않은 선택입니다.");
+            }
+        }
+
         function validateForm() {
             const studentID = document.getElementById("StudentID").value;
             const password = document.getElementById("pw").value;
@@ -98,17 +124,16 @@
                 return false;
             }
 
-            // 조건을 만족하면 페이지 이동
-            alert("인증이 완료되었습니다!");
-            window.location.href = "https://dlclgjs.github.io/subject2/ALERT.html";
-            return false; // 폼의 기본 동작 막기
+            const selectedData = { floor, seatType };
+            localStorage.setItem("seatSelection", JSON.stringify(selectedData));
+            window.location.href = "seatInfo.html";  // seatInfo.html로 이동
+            return false;
         }
     </script>
 </head>
 <body>
     <div class="login_box">
-        <h4><strong>D</strong>AEGU <strong>U</strong>NIVERSITY <strong>L</strong>IBRARY
-            <br> 
+        <h4><strong>D</strong>AEGU <strong>U</strong>NIVERSITY <strong>L</strong>IBRARY<br>
             <strong>C</strong>ERTIFICATION <strong>S</strong>YSTEM</h4>
         <form onsubmit="return validateForm();">
             <table>
